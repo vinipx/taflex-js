@@ -52,16 +52,14 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Build and Deploy Documentation
+      - name: Build Documentation
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           cd docs
           npm ci
           npm run build
-          cd build
-          git init
-          git add .
-          git commit -m "deploy: docusaurus build"
-          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/vinipx/taflex-js.git HEAD:gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
 
