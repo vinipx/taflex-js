@@ -33,3 +33,6 @@ jobs:
       
     - name: Run Integration Tests
       run: npm test
+      env:
+        BASE_URL: https://the-internet.herokuapp.com
+        API_BASE_URL: https://jsonplaceholder.typicode.com
