@@ -1,4 +1,4 @@
-import { logger } from "../utils/logger.js";
+import { logger } from '../utils/logger.js';
 
 /**
  * Playwright implementation of the unified element wrapper.

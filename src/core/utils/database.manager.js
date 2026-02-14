@@ -1,5 +1,5 @@
-import pg from "pg";
-import mysql from "mysql2/promise";
+import pg from 'pg';
+import mysql from 'mysql2/promise';
 
 /**
  * Manages database connections and query orchestration for PostgreSQL and MySQL.
@@ -45,14 +45,12 @@ class DatabaseManager {
    * @throws {Error} If connection is not initialized or database type is unsupported.
    */
   async query(type, query, params = []) {
-    if (type === "postgres") {
-      if (!this.connections.postgres)
-        throw new Error("Postgres connection not initialized");
+    if (type === 'postgres') {
+      if (!this.connections.postgres) throw new Error('Postgres connection not initialized');
       const res = await this.connections.postgres.query(query, params);
       return res.rows;
-    } else if (type === "mysql") {
-      if (!this.connections.mysql)
-        throw new Error("MySQL connection not initialized");
+    } else if (type === 'mysql') {
+      if (!this.connections.mysql) throw new Error('MySQL connection not initialized');
       const [rows] = await this.connections.mysql.execute(query, params);
       return rows;
     } else {

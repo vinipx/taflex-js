@@ -1,5 +1,5 @@
-import { xrayService } from "../utils/xray.service.js";
-import { configManager } from "../../config/config.manager.js";
+import { xrayService } from '../utils/xray.service.js';
+import { configManager } from '../../config/config.manager.js';
 
 /**
  * Custom Playwright reporter that exports test results to Jira Xray.
@@ -11,7 +11,7 @@ class XrayReporter {
    */
   constructor() {
     this.results = [];
-    this.enabled = configManager.get("XRAY_ENABLED");
+    this.enabled = configManager.get('XRAY_ENABLED');
   }
 
   /**
@@ -28,9 +28,7 @@ class XrayReporter {
     this.results.push({
       testKey: xrayKey,
       start: new Date(result.startTime).toISOString(),
-      finish: new Date(
-        new Date(result.startTime).getTime() + result.duration,
-      ).toISOString(),
+      finish: new Date(new Date(result.startTime).getTime() + result.duration).toISOString(),
       status: this.mapStatus(result.status),
       comment: result.error ? result.error.message : undefined,
     });
@@ -42,7 +40,7 @@ class XrayReporter {
   async onEnd() {
     if (!this.enabled || this.results.length === 0) {
       if (this.enabled) {
-        console.info("Xray: No tests with Xray keys found. Skipping upload.");
+        console.info('Xray: No tests with Xray keys found. Skipping upload.');
       }
       return;
     }
@@ -51,7 +49,7 @@ class XrayReporter {
     try {
       await xrayService.importExecution(formattedResults);
     } catch (error) {
-      console.error("Xray: Failed to upload results:", error.message);
+      console.error('Xray: Failed to upload results:', error.message);
     }
   }
 
@@ -63,9 +61,9 @@ class XrayReporter {
   extractXrayKey(test) {
     // Search in tags first
     const tagMatch = test.tags?.find(
-      (tag) => tag.match(/^[A-Z]+-\d+$/) || tag.match(/^@?[A-Z]+-\d+$/),
+      (tag) => tag.match(/^[A-Z]+-\d+$/) || tag.match(/^@?[A-Z]+-\d+$/)
     );
-    if (tagMatch) return tagMatch.replace(/^@/, "");
+    if (tagMatch) return tagMatch.replace(/^@/, '');
 
     // Search in title
     const titleMatch = test.title.match(/([A-Z]+-\d+)/);
@@ -79,15 +77,15 @@ class XrayReporter {
    */
   mapStatus(playwrightStatus) {
     switch (playwrightStatus) {
-      case "passed":
-        return "PASSED";
-      case "failed":
-      case "timedOut":
-        return "FAILED";
-      case "skipped":
-        return "TODO";
+      case 'passed':
+        return 'PASSED';
+      case 'failed':
+      case 'timedOut':
+        return 'FAILED';
+      case 'skipped':
+        return 'TODO';
       default:
-        return "FAILED";
+        return 'FAILED';
     }
   }
 }

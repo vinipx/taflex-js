@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import { configManager } from "../../config/config.manager.js";
+import fs from 'fs';
+import path from 'path';
+import { configManager } from '../../config/config.manager.js';
 
 /**
  * Manages hierarchical locators using a cascading inheritance model:
@@ -14,8 +14,8 @@ export class LocatorManager {
    */
   constructor() {
     this.locators = {};
-    this.basePath = path.resolve(process.cwd(), "src/resources/locators");
-    this.currentMode = configManager.get("EXECUTION_MODE");
+    this.basePath = path.resolve(process.cwd(), 'src/resources/locators');
+    this.currentMode = configManager.get('EXECUTION_MODE');
     this.currentPage = null;
   }
 
@@ -27,16 +27,12 @@ export class LocatorManager {
   load(pageName = null) {
     this.currentPage = pageName;
 
-    const globalLocators = this._readJson("global.json");
-    const modeLocators = this._readJson(
-      path.join(this.currentMode, "common.json"),
-    );
+    const globalLocators = this._readJson('global.json');
+    const modeLocators = this._readJson(path.join(this.currentMode, 'common.json'));
 
     let pageLocators = {};
     if (pageName) {
-      pageLocators = this._readJson(
-        path.join(this.currentMode, `${pageName}.json`),
-      );
+      pageLocators = this._readJson(path.join(this.currentMode, `${pageName}.json`));
     }
 
     // Merge locators: Page > Mode > Global
@@ -66,12 +62,10 @@ export class LocatorManager {
     const filePath = path.join(this.basePath, relativePath);
     if (fs.existsSync(filePath)) {
       try {
-        const data = fs.readFileSync(filePath, "utf8");
+        const data = fs.readFileSync(filePath, 'utf8');
         return JSON.parse(data);
       } catch (error) {
-        console.warn(
-          `⚠️ Failed to parse locator file: ${filePath}. Error: ${error.message}`,
-        );
+        console.warn(`⚠️ Failed to parse locator file: ${filePath}. Error: ${error.message}`);
       }
     }
     return {};

@@ -12,7 +12,7 @@ export class AutomationDriver {
    * @abstract
    */
   async initialize() {
-    throw new Error("initialize() must be implemented");
+    throw new Error('initialize() must be implemented');
   }
 
   /**
@@ -21,7 +21,7 @@ export class AutomationDriver {
    * @abstract
    */
   async terminate() {
-    throw new Error("terminate() must be implemented");
+    throw new Error('terminate() must be implemented');
   }
 
   /**
@@ -31,7 +31,7 @@ export class AutomationDriver {
    * @abstract
    */
   async navigateTo(_urlKey) {
-    throw new Error("navigateTo() must be implemented");
+    throw new Error('navigateTo() must be implemented');
   }
 
   /**
@@ -41,7 +41,7 @@ export class AutomationDriver {
    * @abstract
    */
   async findElement(_logicalName) {
-    throw new Error("findElement() must be implemented");
+    throw new Error('findElement() must be implemented');
   }
 
   /**
@@ -51,7 +51,7 @@ export class AutomationDriver {
    * @abstract
    */
   async loadLocators(_pageName) {
-    throw new Error("loadLocators() must be implemented");
+    throw new Error('loadLocators() must be implemented');
   }
 
   /**
@@ -60,7 +60,7 @@ export class AutomationDriver {
    * @abstract
    */
   getExecutionMode() {
-    throw new Error("getExecutionMode() must be implemented");
+    throw new Error('getExecutionMode() must be implemented');
   }
 
   /**
@@ -70,6 +70,6 @@ export class AutomationDriver {
    * @abstract
    */
   async captureScreenshot(_name) {
-    throw new Error("captureScreenshot() must be implemented");
+    throw new Error('captureScreenshot() must be implemented');
   }
 }
