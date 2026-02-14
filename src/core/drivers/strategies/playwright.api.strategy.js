@@ -1,7 +1,7 @@
-import { request } from '@playwright/test';
-import { AutomationDriver } from '../automation.driver.js';
-import { locatorManager } from '../../locators/locator.manager.js';
-import { logger } from '../../utils/logger.js';
+import { request } from "@playwright/test";
+import { AutomationDriver } from "../automation.driver.js";
+import { locatorManager } from "../../locators/locator.manager.js";
+import { logger } from "../../utils/logger.js";
 
 /**
  * API automation driver implementation using Playwright's APIRequestContext.
@@ -23,12 +23,14 @@ export class PlaywrightApiStrategy extends AutomationDriver {
    */
   async initialize(config) {
     const { apiBaseUrl } = config;
-    logger.info(`Initializing Playwright API Strategy with base URL: ${apiBaseUrl}`);
+    logger.info(
+      `Initializing Playwright API Strategy with base URL: ${apiBaseUrl}`,
+    );
     this.requestContext = await request.newContext({
       baseURL: apiBaseUrl,
       extraHTTPHeaders: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     });
     return this.requestContext;
@@ -53,7 +55,9 @@ export class PlaywrightApiStrategy extends AutomationDriver {
    * @throws {Error} Always throws as findElement is not supported.
    */
   async findElement(_logicalName) {
-    throw new Error('findElement() is not applicable for API strategy in this context');
+    throw new Error(
+      "findElement() is not applicable for API strategy in this context",
+    );
   }
 
   /**
@@ -113,6 +117,6 @@ export class PlaywrightApiStrategy extends AutomationDriver {
    * @returns {string} 'api'
    */
   getExecutionMode() {
-    return 'api';
+    return "api";
   }
 }

@@ -1,9 +1,9 @@
-import { chromium, firefox, webkit } from '@playwright/test';
-import { AutomationDriver } from '../automation.driver.js';
-import { locatorManager } from '../../locators/locator.manager.js';
-import { PlaywrightElement } from '../../elements/playwright.element.js';
-import { CapabilityBuilder } from '../../utils/capability.builder.js';
-import { logger } from '../../utils/logger.js';
+import { chromium, firefox, webkit } from "@playwright/test";
+import { AutomationDriver } from "../automation.driver.js";
+import { locatorManager } from "../../locators/locator.manager.js";
+import { PlaywrightElement } from "../../elements/playwright.element.js";
+import { CapabilityBuilder } from "../../utils/capability.builder.js";
+import { logger } from "../../utils/logger.js";
 
 /**
  * Web automation driver implementation using Playwright.
@@ -28,18 +28,22 @@ export class PlaywrightDriverStrategy extends AutomationDriver {
    * @returns {Promise<import('@playwright/test').Page>} The initialized Playwright page.
    */
   async initialize(config) {
-    const { browserType = 'chromium', headless = true, cloudPlatform = 'local' } = config;
+    const {
+      browserType = "chromium",
+      headless = true,
+      cloudPlatform = "local",
+    } = config;
     const engines = { chromium, firefox, webkit };
 
-    if (cloudPlatform === 'local') {
+    if (cloudPlatform === "local") {
       this.browser = await engines[browserType].launch({ headless });
     } else {
       const caps = CapabilityBuilder.buildWebCapabilities(config);
       let wsEndpoint;
 
-      if (cloudPlatform === 'browserstack') {
+      if (cloudPlatform === "browserstack") {
         wsEndpoint = `wss://cdp.browserstack.com/playwright?caps=${encodeURIComponent(JSON.stringify(caps))}`;
-      } else if (cloudPlatform === 'saucelabs') {
+      } else if (cloudPlatform === "saucelabs") {
         wsEndpoint = `wss://ondemand.us-west-1.saucelabs.com/playwright/test?caps=${encodeURIComponent(JSON.stringify(caps))}`;
       }
 
@@ -104,7 +108,7 @@ export class PlaywrightDriverStrategy extends AutomationDriver {
     if (this.testInfo) {
       await this.testInfo.attach(name, {
         body: screenshot,
-        contentType: 'image/png',
+        contentType: "image/png",
       });
     }
 
@@ -119,6 +123,6 @@ export class PlaywrightDriverStrategy extends AutomationDriver {
    * @returns {string} 'web'
    */
   getExecutionMode() {
-    return 'web';
+    return "web";
   }
 }

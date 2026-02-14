@@ -1,8 +1,8 @@
-import { remote } from 'webdriverio';
-import { AutomationDriver } from '../automation.driver.js';
-import { locatorManager } from '../../locators/locator.manager.js';
-import { MobileElement } from '../../elements/mobile.element.js';
-import { CapabilityBuilder } from '../../utils/capability.builder.js';
+import { remote } from "webdriverio";
+import { AutomationDriver } from "../automation.driver.js";
+import { locatorManager } from "../../locators/locator.manager.js";
+import { MobileElement } from "../../elements/mobile.element.js";
+import { CapabilityBuilder } from "../../utils/capability.builder.js";
 
 /**
  * Mobile automation driver implementation using WebdriverIO (Appium).
@@ -25,7 +25,7 @@ export class WebdriverioMobileStrategy extends AutomationDriver {
   async initialize(config) {
     let wdioConfig = config;
 
-    if (config.cloudPlatform && config.cloudPlatform !== 'local') {
+    if (config.cloudPlatform && config.cloudPlatform !== "local") {
       wdioConfig = CapabilityBuilder.buildMobileConfig(config);
     }
 
@@ -76,6 +76,6 @@ export class WebdriverioMobileStrategy extends AutomationDriver {
    * @returns {string} 'mobile'
    */
   getExecutionMode() {
-    return 'mobile';
+    return "mobile";
   }
 }

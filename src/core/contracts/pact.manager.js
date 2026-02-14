@@ -1,6 +1,6 @@
-import { PactV3 } from '@pact-foundation/pact';
-import path from 'path';
-import { configManager } from '../../config/config.manager.js';
+import { PactV3 } from "@pact-foundation/pact";
+import path from "path";
+import { configManager } from "../../config/config.manager.js";
 
 /**
  * Manages Pact contract testing lifecycle and interactions.
@@ -11,7 +11,7 @@ export class PactManager {
    * Initializes the PactManager state based on framework configuration.
    */
   constructor() {
-    this.enabled = configManager.get('PACT_ENABLED');
+    this.enabled = configManager.get("PACT_ENABLED");
     this.pact = null;
   }
 
@@ -22,16 +22,16 @@ export class PactManager {
    * @returns {PactV3|null} The Pact instance or null if contract testing is disabled.
    */
   setup(
-    consumer = configManager.get('PACT_CONSUMER'),
-    provider = configManager.get('PACT_PROVIDER')
+    consumer = configManager.get("PACT_CONSUMER"),
+    provider = configManager.get("PACT_PROVIDER"),
   ) {
     if (!this.enabled) return null;
 
     this.pact = new PactV3({
       consumer,
       provider,
-      dir: path.resolve(process.cwd(), 'pacts'),
-      logLevel: configManager.get('PACT_LOG_LEVEL'),
+      dir: path.resolve(process.cwd(), "pacts"),
+      logLevel: configManager.get("PACT_LOG_LEVEL"),
     });
 
     return this.pact;

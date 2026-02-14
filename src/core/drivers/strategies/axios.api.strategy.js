@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { AutomationDriver } from '../automation.driver.js';
-import { locatorManager } from '../../locators/locator.manager.js';
-import { logger } from '../../utils/logger.js';
+import axios from "axios";
+import { AutomationDriver } from "../automation.driver.js";
+import { locatorManager } from "../../locators/locator.manager.js";
+import { logger } from "../../utils/logger.js";
 
 /**
  * API automation driver implementation using Axios.
@@ -30,8 +30,8 @@ export class AxiosApiStrategy extends AutomationDriver {
       baseURL: apiBaseUrl,
       timeout: timeout || 30000,
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
         ...headers,
       },
       // Don't throw on 4xx/5xx, let assertions handle it
@@ -61,7 +61,7 @@ export class AxiosApiStrategy extends AutomationDriver {
    * @throws {Error} Always throws as findElement is not supported.
    */
   async findElement(_logicalName) {
-    throw new Error('findElement() is not applicable for Axios API strategy');
+    throw new Error("findElement() is not applicable for Axios API strategy");
   }
 
   /**
@@ -149,7 +149,9 @@ export class AxiosApiStrategy extends AutomationDriver {
       json: async () => response.data,
       headers: () => response.headers,
       text: async () =>
-        typeof response.data === 'string' ? response.data : JSON.stringify(response.data),
+        typeof response.data === "string"
+          ? response.data
+          : JSON.stringify(response.data),
       raw: response, // Access to original axios response if needed
     };
   }
@@ -159,6 +161,6 @@ export class AxiosApiStrategy extends AutomationDriver {
    * @returns {string} 'api'
    */
   getExecutionMode() {
-    return 'api';
+    return "api";
   }
 }

@@ -1,10 +1,10 @@
-import pino from 'pino';
-import { ReportingApi } from '@reportportal/agent-js-playwright';
-import * as allure from 'allure-js-commons';
+import pino from "pino";
+import { ReportingApi } from "@reportportal/agent-js-playwright";
+import * as allure from "allure-js-commons";
 
 const pinoLogger = pino({
   transport: {
-    target: 'pino-pretty',
+    target: "pino-pretty",
     options: {
       colorize: true,
       sync: true,
@@ -29,11 +29,11 @@ export const logger = {
     pinoLogger.info(message, ...args);
     try {
       ReportingApi.info(message);
-      allure.logStep(message, 'passed');
-    } catch (e) {
+      allure.logStep(message, "passed");
+    } catch {
       // Silently ignore if reporting APIs are not available (e.g. in Vitest)
     }
-    if (process.env.TEST_WORKER_INDEX) console.log(`INFO: ${message}`);
+    if (process.env.TEST_WORKER_INDEX) console.info(`INFO: ${message}`);
   },
 
   /**
@@ -45,10 +45,10 @@ export const logger = {
     pinoLogger.debug(message, ...args);
     try {
       ReportingApi.debug(message);
-    } catch (e) {
+    } catch {
       // ignore
     }
-    if (process.env.TEST_WORKER_INDEX) console.log(`DEBUG: ${message}`);
+    if (process.env.TEST_WORKER_INDEX) console.info(`DEBUG: ${message}`);
   },
 
   /**
@@ -60,11 +60,11 @@ export const logger = {
     pinoLogger.warn(message, ...args);
     try {
       ReportingApi.warn(message);
-      allure.logStep(`WARN: ${message}`, 'broken');
-    } catch (e) {
+      allure.logStep(`WARN: ${message}`, "broken");
+    } catch {
       // ignore
     }
-    if (process.env.TEST_WORKER_INDEX) console.log(`WARN: ${message}`);
+    if (process.env.TEST_WORKER_INDEX) console.warn(`WARN: ${message}`);
   },
 
   /**
@@ -76,11 +76,11 @@ export const logger = {
     pinoLogger.error(message, ...args);
     try {
       ReportingApi.error(message);
-      allure.logStep(`ERROR: ${message}`, 'failed');
-    } catch (e) {
+      allure.logStep(`ERROR: ${message}`, "failed");
+    } catch {
       // ignore
     }
-    if (process.env.TEST_WORKER_INDEX) console.log(`ERROR: ${message}`);
+    if (process.env.TEST_WORKER_INDEX) console.error(`ERROR: ${message}`);
   },
 
   /**
@@ -92,10 +92,10 @@ export const logger = {
     pinoLogger.trace(message, ...args);
     try {
       ReportingApi.trace(message);
-    } catch (e) {
+    } catch {
       // ignore
     }
-    if (process.env.TEST_WORKER_INDEX) console.log(`TRACE: ${message}`);
+    if (process.env.TEST_WORKER_INDEX) console.info(`TRACE: ${message}`);
   },
 
   /**
@@ -108,13 +108,13 @@ export const logger = {
       // ReportPortal
       ReportingApi.info(name, {
         name,
-        type: 'image/png',
-        content: buffer.toString('base64'),
+        type: "image/png",
+        content: buffer.toString("base64"),
       });
 
       // Allure
-      allure.attachment(name, buffer, 'image/png');
-    } catch (e) {
+      allure.attachment(name, buffer, "image/png");
+    } catch {
       // ignore
     }
   },
