@@ -63,5 +63,5 @@ jobs:
           git init
           git add .
           git commit -m "deploy: docusaurus build"
-          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/vinipx/taflex-js.git main:gh-pages
+          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/vinipx/taflex-js.git HEAD:gh-pages
 
