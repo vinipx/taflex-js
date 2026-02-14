@@ -12,6 +12,7 @@ const config = {
 
   organizationName: 'vinipx',
   projectName: 'taflex-js',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
 

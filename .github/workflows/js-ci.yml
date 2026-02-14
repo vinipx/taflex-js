@@ -58,8 +58,10 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           cd docs
           npm ci
-          npm run deploy
-        env:
-          USE_SSH: false
-          GIT_USER: git
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          npm run build
+          cd build
+          git init
+          git add .
+          git commit -m "deploy: docusaurus build"
+          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/vinipx/taflex-js.git main:gh-pages
+
