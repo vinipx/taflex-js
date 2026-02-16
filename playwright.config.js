@@ -12,6 +12,7 @@ const reporters = [];
 configManager.get('REPORTERS').forEach((reporter) => {
   if (reporter === 'html') {
     reporters.push(['html']);
+    reporters.push(['json', { outputFile: 'playwright-report/results.json' }]);
   } else if (reporter === 'allure') {
     reporters.push([
       'allure-playwright',

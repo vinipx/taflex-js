@@ -48,6 +48,7 @@ const sidebars = {
       type: "category",
       label: "Core Guides",
       items: [
+        "guides/mcp-integration",
         "guides/reporting",
         "guides/pact-testing",
         "guides/locators",
