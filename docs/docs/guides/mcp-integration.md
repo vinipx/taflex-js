@@ -59,4 +59,32 @@ A new engineer can ask the IDE agent: *"How do I run the API tests for the user 
 
 ## ⚙️ Setup & Configuration
 
-For detailed technical setup instructions, including how to connect TAFLEX JS to Claude Desktop or other MCP clients, see the [MCP README](https://github.com/vinipx/taflex-js/blob/main/src/mcp/README.md) in the source code.
+To enable AI agents to use TAFLEX JS, you must configure your MCP client to point to the framework's MCP server.
+
+### 1. Identify the Server Path
+The MCP server is located at: `src/mcp/server.js` within your project root. You will need the **absolute path** to this file.
+
+### 2. Configure Claude Desktop
+Add the following entry to your `claude_desktop_config.json` (typically located in `%APPDATA%/Claude/` on Windows or `~/Library/Application Support/Claude/` on macOS):
+
+```json
+{
+  "mcpServers": {
+    "taflex": {
+      "command": "node",
+      "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  }
+}
+```
+
+### 3. Verify Connection
+1. Restart Claude Desktop.
+2. Click the 🔨 **Hammer Icon** in the chat interface.
+3. You should see `taflex` listed with tools like `run_test`, `list_specs`, and `get_locator`.
+
+### 4. Other Clients
+For IDE-based agents (like Cursor or VS Code extensions supporting MCP), use the same `node` command and argument structure in their respective MCP configuration settings.
