@@ -65,6 +65,13 @@ const capabilityFeatures = [
       'Native integration with BrowserStack and SauceLabs to execute tests across thousands of real devices and browser combinations.',
   },
   {
+    badge: 'AI-AGENT',
+    color: '#ef4444',
+    title: 'Autonomous AI Ready',
+    description:
+      'Native MCP (Model Context Protocol) server allows AI agents to run tests, inspect locators, and debug failures autonomously.',
+  },
+  {
     badge: 'DATA',
     color: '#f59e0b',
     title: 'Database Integration',
@@ -74,6 +81,18 @@ const capabilityFeatures = [
 ];
 
 const coreFeatures = [
+  {
+    icon: '🤖',
+    title: 'AI-Agent Integration (MCP)',
+    description:
+      'Expose your test suite as an MCP server. Connect to Claude Desktop or IDE agents to transform your tests into an active AI service.',
+  },
+  {
+    icon: '🤝',
+    title: 'Pact Contract Testing',
+    description:
+      'First-class support for Consumer-Driven Contracts. Catch breaking API changes early and ensure microservices compatibility at scale.',
+  },
   {
     icon: '🧩',
     title: 'Strategy Pattern Architecture',
@@ -94,9 +113,9 @@ const coreFeatures = [
   },
   {
     icon: '📊',
-    title: 'Modern Reporting',
+    title: 'Reporting Governance',
     description:
-      'Native Allure, ReportPortal, and Playwright HTML reporter integration with detailed traces and videos for enterprise-level visibility.',
+      'Native Allure, ReportPortal, and Xray integration with detailed traces and videos for enterprise-level visibility and Jira traceability.',
   },
   {
     icon: '🛡️',
@@ -104,30 +123,21 @@ const coreFeatures = [
     description:
       'Environment validation using Zod ensures your framework is always correctly configured before tests even start.',
   },
-  {
-    icon: '🧹',
-    title: 'Code Hygiene & Quality',
-    description:
-      'Strict linting and formatting via ESLint and Prettier. Maintain a clean, professional codebase automatically on every commit.',
-  },
-  {
-    icon: '🚀',
-    title: 'CI/CD Ready',
-    description:
-      'Pre-configured GitHub Actions workflows for automated testing and documentation deployment to GitHub Pages.',
-  },
 ];
 
 const techStack = [
   { name: 'Node.js', desc: 'Runtime (ESM)' },
+  { name: 'MCP', desc: 'AI-Agent Protocol' },
   { name: 'Playwright', desc: 'Web & Hybrid API' },
   { name: 'Axios', desc: 'Specialized API' },
   { name: 'WebdriverIO', desc: 'Mobile' },
   { name: 'Vitest', desc: 'Unit Testing' },
+  { name: 'Pact', desc: 'Contract Testing' },
   { name: 'Gherkin', desc: 'BDD Specifications' },
   { name: 'Zod', desc: 'Validation' },
   { name: 'Allure', desc: 'Reporting' },
   { name: 'ReportPortal', desc: 'Enterprise Reporting' },
+  { name: 'Xray', desc: 'Jira Governance' },
   { name: 'BrowserStack', desc: 'Cloud Execution' },
   { name: 'SauceLabs', desc: 'Cloud Execution' },
   { name: 'ESLint', desc: 'Linting' },
