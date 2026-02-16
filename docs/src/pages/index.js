@@ -168,6 +168,42 @@ function CapabilitiesSection() {
   );
 }
 
+function AIAgentSection() {
+  return (
+    <section className={styles.aiAgent}>
+      <div className="container">
+        <div className={styles.aiContent}>
+          <div className={styles.aiBadge}>NEXT GENERATION</div>
+          <h2>Autonomous AI Integration</h2>
+          <p>
+            TAFLEX JS is the first enterprise framework with native <strong>Model Context Protocol (MCP)</strong> support. 
+            Bridge the gap between your test automation and AI agents like Claude Desktop or IDE assistants.
+          </p>
+          <div className={styles.aiFeatures}>
+            <div className={styles.aiFeatureItem}>
+              <strong>Self-Healing Discovery</strong>
+              <span>Agents can inspect locators to identify and propose fixes for broken selectors.</span>
+            </div>
+            <div className={styles.aiFeatureItem}>
+              <strong>Autonomous Execution</strong>
+              <span>AI can trigger specific tests and analyze results without human intervention.</span>
+            </div>
+            <div className={styles.aiFeatureItem}>
+              <strong>Context-Aware Debugging</strong>
+              <span>Give your agent the "eyes" to see your reports and the "hands" to run your tests.</span>
+            </div>
+          </div>
+          <div className={styles.archCta}>
+            <Link to="/docs/guides/mcp-integration" className={styles.heroPrimary}>
+              Explore MCP Integration →
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ArchitectureSection() {
   return (
     <section className={styles.architecture}>
@@ -295,6 +331,7 @@ export default function Home() {
       <HeroBanner />
       <main>
         <CapabilitiesSection />
+        <AIAgentSection />
         <ArchitectureSection />
         <FeaturesSection />
         <TechStackSection />
