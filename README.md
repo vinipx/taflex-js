@@ -77,11 +77,12 @@ cd taflex-js
 
 ## 🤖 AI-Agent Integration (MCP)
 
-TAFLEX JS is a **Model Context Protocol (MCP)** host. This allows you to connect your test suite to AI assistants like Claude Desktop or IDE agents.
+TAFLEX JS is a **Model Context Protocol (MCP)** host. This allows you to connect your test suite to AI assistants like Claude Desktop, Gemini CLI, or Cursor.
 
-### Quick Connect (Claude Desktop)
+### Quick Connect
+
+#### Claude Desktop
 Add this to your `claude_desktop_config.json`:
-
 ```json
 {
   "mcpServers": {
@@ -93,7 +94,25 @@ Add this to your `claude_desktop_config.json`:
 }
 ```
 
-Once connected, your AI assistant can autonomously **run tests**, **inspect locators**, and **analyze reports**.
+#### Gemini CLI
+Add this to your `.gemini/settings.json`:
+```json
+{
+  "mcpServers": {
+    "taflex": {
+      "command": "node",
+      "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"]
+    }
+  }
+}
+```
+
+#### Cursor
+1. Go to **Settings > Features > MCP**.
+2. Click **+ Add New MCP Server**.
+3. Name: `taflex`, Type: `command`, Command: `node /absolute/path/to/taflex-js/src/mcp/server.js`
+
+> 💡 For more detailed setup instructions and other clients (VS Code, OpenCode), check our [MCP Integration Guide](https://vinipx.github.io/taflex-js/docs/guides/mcp-integration).
 
 ---
 
