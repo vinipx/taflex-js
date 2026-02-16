@@ -16,17 +16,46 @@ This module implements a Model Context Protocol (MCP) server for the Taflex JS f
 
 ## Configuration
 
-To use this server with Claude Desktop, add the following to your `claude_desktop_config.json`:
+To use this server with AI agents, you need to point your MCP client to `src/mcp/server.js`.
+
+### Gemini CLI
+Run the following command:
+
+```bash
+gemini mcp add taflex node /absolute/path/to/taflex-js/src/mcp/server.js
+```
+
+### Claude Desktop / VS Code (Cline)
+Add the following to your configuration file (e.g., `claude_desktop_config.json`, `cline_mcp_settings.json`):
 
 ```json
 {
   "mcpServers": {
     "taflex": {
       "command": "node",
+      "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"]
+    }
+  }
+}
+```
+
+### Cursor
+Add a new MCP server in **Settings > Features > MCP**:
+- **Name**: `taflex`
+- **Type**: `command`
+- **Command**: `node /absolute/path/to/taflex-js/src/mcp/server.js`
+
+### OpenCode
+Add to `opencode.json`:
+
+```json
+{
+  "mcpServers": {
+    "taflex": {
+      "type": "local",
+      "command": "node",
       "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"],
-      "env": {
-        "NODE_ENV": "development"
-      }
+      "enabled": true
     }
   }
 }

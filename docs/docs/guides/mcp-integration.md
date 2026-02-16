@@ -64,7 +64,9 @@ To enable AI agents to use TAFLEX JS, you must configure your MCP client to poin
 ### 1. Identify the Server Path
 The MCP server is located at: `src/mcp/server.js` within your project root. You will need the **absolute path** to this file.
 
-### 2. Configure Claude Desktop
+### 2. Configure Your Client
+
+#### Claude Desktop
 Add the following entry to your `claude_desktop_config.json` (typically located in `%APPDATA%/Claude/` on Windows or `~/Library/Application Support/Claude/` on macOS):
 
 ```json
@@ -81,10 +83,68 @@ Add the following entry to your `claude_desktop_config.json` (typically located 
 }
 ```
 
-### 3. Verify Connection
-1. Restart Claude Desktop.
-2. Click the 🔨 **Hammer Icon** in the chat interface.
-3. You should see `taflex` listed with tools like `run_test`, `list_specs`, and `get_locator`.
+#### Gemini CLI
+You can add the server via the command line:
 
-### 4. Other Clients
-For IDE-based agents (like Cursor or VS Code extensions supporting MCP), use the same `node` command and argument structure in their respective MCP configuration settings.
+```bash
+gemini mcp add taflex node /absolute/path/to/taflex-js/src/mcp/server.js
+```
+
+Alternatively, add it manually to your `.gemini/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "taflex": {
+      "command": "node",
+      "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"]
+    }
+  }
+}
+```
+
+#### Cursor
+1. Go to **Settings > Features > MCP**.
+2. Click **+ Add New MCP Server**.
+3. Name: `taflex`
+4. Type: `command`
+5. Command: `node /absolute/path/to/taflex-js/src/mcp/server.js`
+
+#### VS Code (Cline / Roo Code)
+If you are using extensions like **Cline** or **Roo Code**:
+1. Open the extension settings or the MCP configuration file (usually found in the extension's global storage).
+2. Add the server definition:
+
+```json
+{
+  "mcpServers": {
+    "taflex": {
+      "command": "node",
+      "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"]
+    }
+  }
+}
+```
+
+#### OpenCode
+Add to your `opencode.json` (global in `~/.config/opencode/` or per-project):
+
+```json
+{
+  "mcpServers": {
+    "taflex": {
+      "type": "local",
+      "command": "node",
+      "args": ["/absolute/path/to/taflex-js/src/mcp/server.js"],
+      "enabled": true
+    }
+  }
+}
+```
+
+#### GitHub Copilot
+GitHub Copilot does not natively support MCP servers at this time. To use TAFLEX MCP with Copilot, you may need a bridge extension or an IDE that integrates both (like Cursor).
+
+### 3. Verify Connection
+1. Restart your AI client or refresh the MCP server list.
+2. You should see `taflex` listed with tools like `run_test`, `list_specs`, and `get_locator`.
