@@ -129,7 +129,8 @@ const config = {
             label: "Core Guides",
             position: "left",
             items: [
-              { label: "Reporting", to: "/docs/guides/reporting" },
+              { label: "AI-Agent Integration (MCP)", to: "/docs/guides/mcp-integration" },
+              { label: "Reporting Governance", to: "/docs/guides/reporting" },
               { label: "Pact Testing", to: "/docs/guides/pact-testing" },
               { label: "Locators", to: "/docs/guides/locators" },
               { label: "API Testing", to: "/docs/guides/api-testing" },

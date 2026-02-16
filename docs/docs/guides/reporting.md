@@ -1,6 +1,6 @@
-# Reporting & Governance
+# Reporting Governance
 
-taflex-js provides a robust reporting ecosystem designed to satisfy different stakeholders, from Developers needing quick feedback to Managers requiring high-level quality governance.
+TAFLEX JS provides a robust reporting ecosystem designed to satisfy different stakeholders, from Developers needing quick feedback to Managers requiring high-level quality governance.
 
 ## Strategy: Choosing the Right Tool
 

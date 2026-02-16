@@ -49,7 +49,11 @@ const sidebars = {
       label: "Core Guides",
       items: [
         "guides/mcp-integration",
-        "guides/reporting",
+        {
+          type: "doc",
+          id: "guides/reporting",
+          label: "Reporting Governance",
+        },
         "guides/pact-testing",
         "guides/locators",
         "guides/api-testing",
