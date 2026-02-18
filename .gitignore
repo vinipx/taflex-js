@@ -8,6 +8,10 @@ node_modules/
 .env.*
 !.env.example
 
+# AI 
+.gemini/
+src/mcp/.gemini
+
 # OS files
 .DS_Store
 Thumbs.db
