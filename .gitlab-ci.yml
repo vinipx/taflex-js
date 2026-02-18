@@ -55,6 +55,9 @@ integration_tests:
 
 pages:
   stage: deploy
+  variables:
+    DOCS_URL: "https://taflex-js-8ce40b.git.pages.epam.com"
+    DOCS_BASE_URL: "/"
   script:
     - cd docs
     - npm run build

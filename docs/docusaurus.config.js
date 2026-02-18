@@ -7,8 +7,8 @@ const config = {
   tagline: 'Enterprise Test Automation Framework in JavaScript',
   favicon: 'img/logo.svg',
 
-  url: 'https://vinipx.github.io',
-  baseUrl: '/taflex-js/',
+  url: process.env.DOCS_URL || 'https://vinipx.github.io',
+  baseUrl: process.env.DOCS_BASE_URL || '/taflex-js/',
 
   organizationName: 'vinipx',
   projectName: 'taflex-js',
